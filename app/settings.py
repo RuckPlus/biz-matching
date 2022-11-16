@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'biz-matching',
+        'NAME': 'biz_matching',
         'USER': 'user',
         'PASSWORD': 'pass',
         'HOST': 'mysql',

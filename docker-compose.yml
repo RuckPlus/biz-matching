@@ -4,7 +4,14 @@ services:
     build: .
     tty: true
     volumes:
-      - ../:katagirikaito/biz-matching/workspace
+      - type: volume
+        source: mysql_data
+        target: /data
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./
+        target: /biz-matching
     depends_on:
       - mysql
 
@@ -14,7 +21,9 @@ services:
       - mysql_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: pass
-      MYSQL_DATABASE: biz-matching
+      MYSQL_DATABASE: biz_matching
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
 
   phpmyadmin:

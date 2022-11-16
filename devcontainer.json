@@ -1,9 +1,9 @@
 {
-	"name": "biz-matching",
+	"name": "biz_matching",
 	// Dockerfileでイメージ・コンテナを作成
 	"dockerComposeFile": "docker-compose.yml",
 	// VS Codeのワークスペースフォルダ
-	"workspaceFolder": "katagirikaito/biz-matching/workspace",
+	"workspaceFolder": "biz-matching/workspace" ,
 	// 使用するサービス
 	"service": "matching",
 	// リモート先のVS Codeにインストールする拡張機能
