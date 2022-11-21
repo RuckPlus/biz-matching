@@ -5,3 +5,4 @@ ENV PYTHONUNBUFFERED 1
 RUN pip install django
 # pipコマンドを最新にし、txtファイル内のパッケージ（後述）をpipインストール
 RUN pip install mysqlclient
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]

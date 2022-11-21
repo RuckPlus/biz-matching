@@ -1,7 +1,11 @@
 version: '3'
 services:
   matching:
-    build: .
+    build: 
+      context: .
+      dockerfile: /biz-matching/Dockerfile
+    ports:
+    - 8000:8000
     tty: true
     volumes:
       - type: volume
@@ -19,6 +23,8 @@ services:
     image: mysql:5.7
     volumes:
       - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: pass
       MYSQL_DATABASE: biz_matching
