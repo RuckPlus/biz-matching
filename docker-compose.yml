@@ -1,0 +1,45 @@
+version: '3'
+services:
+  matching:
+    build: 
+      context: .
+      dockerfile: /biz-matching/Dockerfile
+    ports:
+    - 8000:8000
+    tty: true
+    volumes:
+      - type: volume
+        source: mysql_data
+        target: /data
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./
+        target: /biz-matching
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: biz_matching
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_USER=user
+      - PMA_PASSWORD=pass
+
+volumes:
+    mysql_data:
